@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="106e4e61-7acb-43e6-99bc-6dbdbbaa4f48">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT a.*,  (select REPLACE(VPERSONAL_APELLNOM,'/',' ') from PER_LRMILITARES where CMILITARES_CIP='331843500') as kkk 
+FROM V_USUARIOS_MODULO  a]]>
+	</queryString>
+	<field name="CIP" class="java.math.BigDecimal"/>
+	<field name="GRADO" class="java.lang.String"/>
+	<field name="APELLIDOS_Y_NOMBRES" class="java.lang.String"/>
+	<field name="USUARIO" class="java.lang.String"/>
+	<field name="PERFIL" class="java.lang.String"/>
+	<field name="MODULOS" class="java.lang.String"/>
+	<field name="ESTADO_MOD" class="java.lang.String"/>
+	<field name="KKK" class="java.lang.String"/>
+	<group name="MODULOS">
+		<groupExpression><![CDATA[$F{MODULOS}]]></groupExpression>
+	</group>
+	<background>
+		<band height="490" splitType="Stretch">
+			<image>
+				<reportElement x="138" y="125" width="555" height="365" uuid="1ebbbdae-80c7-48d5-a9a1-fef03af2cd62"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\IMG_reportes\\marca_agua.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="710" y="0" width="92" height="20" uuid="472643b5-b970-41ee-91ee-680a8a69caca"/>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COPERE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="710" y="14" width="92" height="21" uuid="07ccfec2-ec1a-4d2e-a874-e97b4dd3a7ba"/>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DPDT]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="9" width="101" height="50" uuid="2aa8a99a-5c5e-4ad0-8634-0d4ce0eeff37"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Desktop\\IMG_reportes\\siplae-logo.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="710" y="28" width="92" height="20" uuid="6b46a533-df06-4051-8537-caf50461c69b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="710" y="48" width="92" height="20" forecolor="#666666" uuid="f7ad32d3-cb3a-45e4-89b0-6aa3c2cdf79a"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KKK}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="59" width="802" height="20" uuid="e497c52f-6b69-48e1-835e-e764a8de7256"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTA DE MODULOS SEGUN EL USUARIO DEL SISTEMA DE PLANILLAS DEL EJERCITO AF-2018]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="15" width="100" height="20" uuid="09002116-e938-44eb-842e-dc5605c1043e"/>
+				<textFieldExpression><![CDATA[$F{USUARIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="11" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="209" y="0" width="342" height="20" uuid="a22adffb-a6dd-4a6c-9783-828fe6f20b27"/>
+				<textFieldExpression><![CDATA[$F{MODULOS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="24" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

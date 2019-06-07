@@ -1,0 +1,65 @@
+<svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1316 496" style="enable-background:new 0 0 1316 496;" xml:space="preserve" >
+
+	<defs>
+	 	<style type="text/css">
+	 		.st0{fill:none;stroke:#fff;stroke-width:5;stroke-miterlimit:10;}
+			.st1{font-family:'arial black';}
+			.st2{font-size:90.8661px;}
+			.st3{font-size:90.0437px;}
+
+	 		.st0{
+	 			stroke-dasharray: 2000;
+	 			stroke-dashoffset: 0;
+	 			-webkit-animation: dash 4s linear forwards;
+	 			-o-animation: dash 4s linear forwards;
+	 			-moz-animation: dash 4s linear forwards;
+	 		}
+
+	 		#logo{
+	 		cursor:pointer;
+	 		}
+
+	 		#logo:hover .st0{
+	 			fill: rgba(22, 127, 57 ,.5);
+	 			transition: .8s;
+	 		}
+
+	 		#logo.clickit .st0{
+	 			fill: rgba(229, 243, 165 ,.5);
+	 			stroke: rgb(255, 255, 255);
+	 		}
+
+	 		@-webkit-keyframes dash{
+	 			from{
+	 				stroke-dashoffset: 2000;
+	 			}
+	 			to{
+	 				stroke-dashoffset: 0;
+	 			}
+	 		}
+	 	</style>
+
+	 	<script type="text/javascript">
+	 		var clicker = document.querySelector('#logo');
+	 		clicker.addEventListener('click', function(){
+	 			this.classList.toggle('clickit');
+	 		});
+	 	</script>
+
+	 </defs>
+
+<g>
+	<g>
+		<path class="st0" d="M421.5,252.8h-30.7v86.1v35.8c0,8.9-7.3,16.2-16.2,16.2H188.1V482h233.4c33.4,0,60.5-27.1,60.5-60.5v-22.2
+			v-86.1C482,279.9,454.9,252.8,421.5,252.8z"/>
+		<path class="st0" d="M10,399.4v22.2v45.2V482h2h58.5h29V374.6V367v-28.1h-29C37.1,338.9,10,365.9,10,399.4z"/>
+		<path class="st0" d="M480.6,10h-59.1h-351C37.1,10,10,37.1,10,70.5v21.3v84.3c0,33.4,27.1,60.5,60.5,60.5h29v-84.3v-35.8
+			c0-8.9,7.3-16.2,16.2-16.2h259c8.9,0,16.2,7.3,16.2,16.2v35.8h30.7c33.4,0,60.5-27.1,60.5-60.5V70.5V22.8V10H480.6z"/>
+		<path class="st0" d="M303.1,284.3v-77.5v-18.7h-18.7h-77.5c-10.3,0-18.7,8.4-18.7,18.7v77.5v18.7h18.7h77.5
+			C294.6,303.1,303.1,294.6,303.1,284.3z"/>
+	</g>
+</g>
+<text transform="matrix(1.2298 0 0 1 527.5854 233.8521)" class="st0 st1 st2">SISTEMA DE</text>
+<text transform="matrix(1.2298 0 0 1 597.1343 398.8037)" class="st0 st1 st3">PLANILLAS</text>
+</svg>

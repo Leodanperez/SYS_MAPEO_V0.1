@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="371bde26-696a-42db-82b5-cf4b7a15e3f6">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="7"/>
+	<queryString>
+		<![CDATA[SELECT a.*,  (select REPLACE(VPERSONAL_APELLNOM,'/',' ') from PER_LRMILITARES where CMILITARES_CIP='331843500') as kkk 
+FROM V_USUARIOS_SISTEMA  a]]>
+	</queryString>
+	<field name="CIP" class="java.math.BigDecimal"/>
+	<field name="GRADO" class="java.lang.String"/>
+	<field name="APELLIDOS_Y_NOMBRES" class="java.lang.String"/>
+	<field name="UNIDAD" class="java.lang.String"/>
+	<field name="USUARIO" class="java.lang.String"/>
+	<field name="CORREO" class="java.lang.String"/>
+	<field name="ESTADO" class="java.lang.String"/>
+	<field name="KKK" class="java.lang.String"/>
+	<variable name="CORRELATIVO" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{CIP}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="489" splitType="Stretch">
+			<image>
+				<reportElement x="138" y="121" width="555" height="365" uuid="d9534ff9-80e8-4a38-954a-a8c42ed7e37c"/>
+				<imageExpression><![CDATA["F:\\PROYECTOS HECHOS EN JAVA JSP\\Siplae_V1.2 11092018\\Siplae_V1.2 5092018\\web\\reportes\\marca_agua.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="69" width="802" height="20" uuid="a432faf8-b05e-4c70-a40b-3b6a00394a85"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELACION DE USUARIOS DEL SISTEMA DE PLANILLAS DEL EJERCITO AF-2018]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="11" width="101" height="50" uuid="6a4d72d0-c949-4650-b07b-cef0bf127a13"/>
+				<imageExpression><![CDATA["F:\\PROYECTOS HECHOS EN JAVA JSP\\Siplae_V1.2 11092018\\Siplae_V1.2 5092018\\web\\reportes\\siplae-logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="710" y="-3" width="92" height="20" uuid="461ab773-ba51-4025-b558-ffc016d2b4fa"/>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COPERE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="710" y="11" width="92" height="21" uuid="4bfeeb82-392d-46ad-bff9-1eaf6be4201f"/>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DPDT]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="710" y="25" width="92" height="20" uuid="6c11e295-6e70-40f6-9c2c-d6441db90e34"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="710" y="41" width="92" height="20" forecolor="#666666" uuid="154af8f7-fb3f-4645-b1fb-cb01e5a5ce60"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KKK}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="28" height="16" backcolor="#CCCCCC" uuid="5745f6bd-8e6c-4efb-8e18-e4c7f17ac2d3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="29" y="0" width="83" height="16" backcolor="#CCCCCC" uuid="beff3300-79df-4329-9aae-165442b815a4"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="112" y="0" width="54" height="16" backcolor="#CCCCCC" uuid="b6973aa4-6a5e-4cdf-bf72-504899b2771f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="166" y="0" width="176" height="16" backcolor="#CCCCCC" uuid="d46cd7a0-10c9-48b9-983f-89eabb7aa5f8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS Y NOMBRES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="342" y="0" width="104" height="16" backcolor="#CCCCCC" uuid="b4690070-cfc7-4ceb-9be1-ae8e4c8d84e9"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="446" y="0" width="108" height="16" backcolor="#CCCCCC" uuid="d5287647-007a-4ac8-9a45-7c2f90ac226b"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="554" y="0" width="150" height="16" backcolor="#CCCCCC" uuid="caa8d6e7-d373-4929-a594-a68c7a6e812a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CORREO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="704" y="0" width="98" height="16" backcolor="#CCCCCC" uuid="8ba4153e-8c8f-446b-a6cb-905ede648e4c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="29" y="0" width="83" height="20" uuid="97de7020-1a80-4db2-b32c-04025b0b104d"/>
+				<box>
+					<bottomPen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="0" width="54" height="20" uuid="2cb99b31-4687-4450-9584-dd33892cef00"/>
+				<box>
+					<bottomPen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{GRADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="28" height="20" uuid="cad7b70f-bbb1-470a-ba2e-920874a58e15"/>
+				<box>
+					<bottomPen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{CORRELATIVO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="0" width="176" height="20" uuid="258a33cc-1017-4c92-9d20-48339249dacf"/>
+				<box>
+					<bottomPen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{APELLIDOS_Y_NOMBRES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="104" height="20" uuid="c5210683-3c02-42d0-ade8-52a8759f9d81"/>
+				<box>
+					<bottomPen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{UNIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="0" width="108" height="20" uuid="d17920e9-4001-4458-ac0c-1aab2b3e92ce"/>
+				<box>
+					<bottomPen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="554" y="0" width="150" height="20" uuid="d0873384-1675-4ffc-b8dc-a8cc5583c315"/>
+				<box>
+					<bottomPen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CORREO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="704" y="0" width="98" height="20" uuid="984def71-79f0-408b-abf5-30265b995fde"/>
+				<box>
+					<bottomPen lineWidth="0.75" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ESTADO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
