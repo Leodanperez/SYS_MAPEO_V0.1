@@ -90,9 +90,9 @@ public class DaoProceVehiculosImpl implements DaoProceVehiculos {
                 cs.setString(3, proceVehiculos.getCOD_UNIDAD());
                 cs.registerOutParameter(4, Types.VARCHAR);
                 cs.executeUpdate();
-                System.out.println("termina proc: " + cs.getString(5));
+                System.out.println("termina proc: " + cs.getString(4));
                 cs.executeUpdate();
-                result = cs.getString(5);
+                result = cs.getString(4);
             } catch (SQLException e) {
                 System.out.println("Error al procesar Vehiculos: " + e.getMessage());
                 result = null;
