@@ -78,18 +78,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row clearfix">
-                                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
-                                                                    <label for="icono">Ingrese Numero Dias</label>
+                                                                <div class="col-lg-4 col-md-4 col-sm-8 col-xs-7">
+                                                                    <button type="button" class="btn bg-blue waves-effect btn-sm col-md-6 col-sm-6 col-xs-6" onclick="javascript:fn_procDonaciones();">
+                                                                        <i class="material-icons">save </i>
+                                                                        <span>CALCULAR</span>
+                                                                    </button>
                                                                 </div>
-                                                                <div class="col-lg-6 col-md-6 col-sm-8 col-xs-7">
-                                                                    <div class="form-group">
-                                                                        <div class="form-line">
-                                                                            <input type="text" id="Ipesototal" class="form-control" placeholder="Numero de dias" required name="ptotal">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row clearfix">
                                                                 <div class="col-lg-4 col-md-4 col-sm-8 col-xs-7">
                                                                     <button type="button" class="btn bg-blue waves-effect btn-sm col-md-6 col-sm-6 col-xs-6" onclick="javascript:fn_procDonaciones();">
                                                                         <i class="material-icons">save </i>
@@ -108,26 +102,17 @@
                                                             <th>Cant. Producto</th>
                                                             <th>Donacion Bah</th>
                                                             <th>Edad Antropologica</th>
-                                                            <th>Acción</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <c:forEach items="${listProceDonaciones}" var="listar" varStatus="ok">
                                                             <tr>
-                                                            <td>${listar.CDETADONA_COD}</td>
-                                                            <td>${listar.TIPOPRODUCTO}</td>
-                                                            <td>${listar.ICANTIDAD_PROD}</td>
-                                                            <td>${listar.CDONA_COD}</td>
-                                                            <td>${listar.EDADANTROPOLOGICA}</td>
-                                                            <td>
-                                                                <button type="button" class="btn btn-primary btn-xs waves-effect">
-                                                                    <i class="material-icons">mode_edit</i>
-                                                                </button>
-                                                                <a class="btn bg-pink btn-xs waves-effect">
-                                                                    <i class="material-icons">delete</i>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                                <td>${listar.CDETADONA_COD}</td>
+                                                                <td>${listar.TIPOPRODUCTO}</td>
+                                                                <td>${listar.ICANTIDAD_PROD}</td>
+                                                                <td>${listar.CDONA_COD}</td>
+                                                                <td>${listar.EDADANTROPOLOGICA}</td>
+                                                            </tr>
                                                         </c:forEach>
                                                     </tbody>
                                                 </table>
@@ -164,7 +149,26 @@
                                                                 <div class="col-lg-6 col-md-6 col-sm-8 col-xs-7">
                                                                     <div class="form-group">
                                                                         <div class="form-line">
-                                                                            <select class="form-control show-tick" id="Idonante">
+                                                                            <select class="form-control show-tick" id="Ivehiculo">
+                                                                                <option>- Seleccionar -</option>
+                                                                                <option value="1">CAMION</option>
+                                                                                <option value="1">VOLQUETE</option>
+                                                                                <option value="1">MOTO</option>
+                                                                                <option value="1">AUTO</option>
+                                                                                <option value="1">TRACTOR</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row clearfix">
+                                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 form-control-label">
+                                                                    <label for="descripcionCorta">Seleccione Emergencia</label>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-8 col-xs-7">
+                                                                    <div class="form-group">
+                                                                        <div class="form-line">
+                                                                            <select class="form-control show-tick" id="Iemergencia">
                                                                                 <option>- Seleccionar -</option>
                                                                                 <option value="1">Derrumbe</option>
                                                                                 <option value="1">Huracan</option>
@@ -183,13 +187,11 @@
                                                                 <div class="col-lg-6 col-md-6 col-sm-8 col-xs-7">
                                                                     <div class="form-group">
                                                                         <div class="form-line">
-                                                                            <select class="form-control show-tick" id="Idonante">
+                                                                            <select class="form-control show-tick" id="Iunidad">
                                                                                 <option>- Seleccionar -</option>
-                                                                                <option value="1">Derrumbe</option>
-                                                                                <option value="1">Huracan</option>
-                                                                                <option value="1">Huaico</option>
-                                                                                <option value="1">Volcan</option>
-                                                                                <option value="1">Fin del Mundo</option>
+                                                                                <option value="1">Pentagonito</option>
+                                                                                <option value="1">Chorrillos</option>
+                                                                                <option value="1">Rimac</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>

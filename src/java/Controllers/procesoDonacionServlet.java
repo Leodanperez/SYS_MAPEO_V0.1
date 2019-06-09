@@ -1,9 +1,12 @@
 package Controllers;
 
+import Dao.DaoProceVehiculos;
 import Dao.Impl.DaoProcDonaciones;
+import Dao.Impl.DaoProceVehiculosImpl;
 import Dao.Impl.DbConnection;
 import Dao.ProceDonacionesDao;
 import Models.DetalleDonacion;
+import Models.ProceVehiculos;
 import Models.ProcesoDonaciones;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,6 +32,8 @@ public class procesoDonacionServlet extends HttpServlet {
         ProceDonacionesDao proceDonacionesDao = new DaoProcDonaciones(conn);
         ProcesoDonaciones procesoDonaciones = new ProcesoDonaciones();
         DetalleDonacion detalleDonacion = new DetalleDonacion();
+        ProceVehiculos proceVehiculos = new ProceVehiculos();
+        DaoProceVehiculos daoProceVehiculos = new DaoProceVehiculosImpl(conn);
         RequestDispatcher rd;
         String result;
         StringBuilder sb;
@@ -64,8 +69,26 @@ public class procesoDonacionServlet extends HttpServlet {
             rd.forward(request, response);
         }
 
-        if ("procesar".equals(action)) {
-            String emergencia = request.getParameter("selecEmergencia");
+        if ("procVehiculos".equals(action)) {
+            String codvehiculo = request.getParameter("codVehiculo");
+            String codemergencia = request.getParameter("codEmergencia");
+            String codunidad = request.getParameter("codUnidad");
+            
+            proceVehiculos.setCOD_TIPO_VEHICULO(codvehiculo);
+            proceVehiculos.setCOD_EMERGENCIA(codemergencia);
+            proceVehiculos.setCOD_UNIDAD(codunidad);
+            
+            result = daoProceVehiculos.procDonaciones(proceVehiculos);
+            List<ProceVehiculos> listVehiculos = daoProceVehiculos.listDonaciones();
+            conn.disconnect();
+            
+            response.setContentType("text/html;charset=ISO-8859-1");
+            try (PrintWriter out = response.getWriter()) {
+                out.print(result);
+            }
+            request.setAttribute("listProceDonaciones", listVehiculos);
+            rd = request.getRequestDispatcher("paginas/proceso/p_donaciones.jsp");
+            rd.forward(request, response);
         }
     }
 

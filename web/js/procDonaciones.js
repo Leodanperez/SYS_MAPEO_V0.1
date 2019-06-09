@@ -97,6 +97,28 @@ function fn_procDonaciones() {
         }
      });
 }
+
+var servlet = 'procesoDonacionServlet';
+var link = 'listProcDonaciones';
+function fn_procDonaciones() {
+    var codVehiculo = $("#Ivehiculo").val();
+    var codEmergencia = $("#Iemergencia").val();
+    var codUnidad = $("#Iunidad").val();
+     $.ajax({
+        type: 'POST',
+        url: "procesoDonacionServlet",
+        data: {action: 'procVehiculos', codVehiculo:codVehiculo,codEmergencia: codEmergencia,codUnidad:codUnidad},
+        success: function (data) {
+            console.log(data);
+            if(data === "EXITO"){
+                swal("AVISO DEL SISTEMA", "Datos Guardados Correctamente!", "success");
+                fn_CargarMenu(servlet, link);
+            }else{
+                swal("AVISO DEL SISTEMA", "OPPS! Error", "error");
+            }
+        }
+     });
+}
 init();
 
 
