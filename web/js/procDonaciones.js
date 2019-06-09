@@ -5,7 +5,8 @@ function init() {
     mostrarformSuper(false);
     listar();
     mostrarformSub(false);
-    fn_procDonaciones();
+    //fn_procDonaciones();
+    fn_ListtProcVehiculos();
 }
 
 //Función limpiar
@@ -96,6 +97,11 @@ function fn_procDonaciones() {
             }
         }
      });
+}
+
+function fn_ListtProcVehiculos()
+{
+    $("#getAllVehiculos").load("procesoDonacionServlet?action=listarVehiculos");
 }
 
 var servlet = 'procesoDonacionServlet';

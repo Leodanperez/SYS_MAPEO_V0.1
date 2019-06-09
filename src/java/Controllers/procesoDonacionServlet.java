@@ -6,6 +6,7 @@ import Dao.Impl.DaoProceVehiculosImpl;
 import Dao.Impl.DbConnection;
 import Dao.ProceDonacionesDao;
 import Models.DetalleDonacion;
+import Models.ListAllVehiculosProc;
 import Models.ProceVehiculos;
 import Models.ProcesoDonaciones;
 import java.io.IOException;
@@ -49,6 +50,15 @@ public class procesoDonacionServlet extends HttpServlet {
             rd.forward(request, response);
             //response.sendRedirect("paginas/proceso/p_donaciones.jsp");
         }
+        
+        if("listarVehiculos".equals(action)){
+            List<ListAllVehiculosProc> listProcVehiculos = daoProceVehiculos.listVehiculos();
+            sb = listProcVehiculo(listProcVehiculos);
+            response.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                out.print(sb);
+            }
+        }
 
         if ("insert".equals(action)) {
             String VDESCRIPCION = request.getParameter("codEmergencia");
@@ -79,7 +89,7 @@ public class procesoDonacionServlet extends HttpServlet {
             proceVehiculos.setCOD_UNIDAD(codunidad);
             
             result = daoProceVehiculos.procDonaciones(proceVehiculos);
-            List<ProceVehiculos> listVehiculos = daoProceVehiculos.listDonaciones();
+            List<ListAllVehiculosProc> listVehiculos = daoProceVehiculos.listVehiculos();
             conn.disconnect();
             
             response.setContentType("text/html;charset=ISO-8859-1");
@@ -95,8 +105,33 @@ public class procesoDonacionServlet extends HttpServlet {
     private StringBuilder listProcVehiculo(List list) {
         StringBuilder sb = new StringBuilder();
         if (list != null) {
-            sb.append("");
-            sb.append("");
+            sb.append("<table class=\"table table-striped\" id=\"getAllVehiculos\">");
+            sb.append("<thead>");
+            sb.append("<tr>");
+            sb.append("<th>Volumen</th>");
+            sb.append("<th>Placa</th>");
+            sb.append("<th>Combustible</th>");
+            sb.append("<th>Vehiculos</th>");
+            sb.append("<th>Sub Combustible</th>");
+            sb.append("<th>Unidad</th>");
+            sb.append("<th>Emergencia</th>");
+            sb.append("</tr>");
+            sb.append("</thead>");
+            sb.append("<tbody>");
+            for (int i = 0; i < list.size(); i++) {
+                ListAllVehiculosProc proceVehiculos = (ListAllVehiculosProc) list.get(i);
+                sb.append("<tr>");
+                sb.append("<td>").append(proceVehiculos.getVOLUMEN()).append("</td>");
+                sb.append("<td>").append(proceVehiculos.getPLACA()).append("</td>");
+                sb.append("<td>").append(proceVehiculos.getCOMBUSTIBLE()).append("</td>");
+                sb.append("<td>").append(proceVehiculos.getVEHICULO()).append("</td>");
+                sb.append("<td>").append(proceVehiculos.getSUB_TOTALCOMBUSTIBLE()).append("</td>");
+                sb.append("<td>").append(proceVehiculos.getUNIDAD()).append("</td>");
+                sb.append("<td>").append(proceVehiculos.getEMERGENCIA()).append("</td>");
+                sb.append("</tr>");
+            }
+            sb.append("</tbody>");
+            sb.append("</table>");
         }
         return sb;
     }

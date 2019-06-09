@@ -1,4 +1,8 @@
 
+<%@page import="Models.UnidadMedida"%>
+<%@page import="Dao.Impl.VehiculosDao"%>
+<%@page import="Models.TipoVehiculo"%>
+<%@page import="Models.TipoVehiculo"%>
 <%@page import="Dao.Impl.DaoProcDonaciones"%>
 <%@page import="Models.Emergencias"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -151,11 +155,9 @@
                                                                         <div class="form-line">
                                                                             <select class="form-control show-tick" id="Ivehiculo">
                                                                                 <option>- Seleccionar -</option>
-                                                                                <option value="1">CAMION</option>
-                                                                                <option value="1">VOLQUETE</option>
-                                                                                <option value="1">MOTO</option>
-                                                                                <option value="1">AUTO</option>
-                                                                                <option value="1">TRACTOR</option>
+                                                                                <% for (TipoVehiculo t : VehiculosDao.listar()) {%>
+                                                                                <option value="<%=t.getCTVEHICULO_COD()%>"><%=t.getVDESCRIPCION()%></option>
+                                                                                <%}%>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -170,11 +172,9 @@
                                                                         <div class="form-line">
                                                                             <select class="form-control show-tick" id="Iemergencia">
                                                                                 <option>- Seleccionar -</option>
-                                                                                <option value="1">Derrumbe</option>
-                                                                                <option value="1">Huracan</option>
-                                                                                <option value="1">Huaico</option>
-                                                                                <option value="1">Volcan</option>
-                                                                                <option value="1">Fin del Mundo</option>
+                                                                                <% for (Emergencias t : DaoProcDonaciones.getEmergencia()) {%>
+                                                                                <option value="<%=t.getCEMERGENCIA_COD()%>"><%=t.getVDESCRIPCION()%></option>
+                                                                                <%}%>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -189,9 +189,9 @@
                                                                         <div class="form-line">
                                                                             <select class="form-control show-tick" id="Iunidad">
                                                                                 <option>- Seleccionar -</option>
-                                                                                <option value="1">Pentagonito</option>
-                                                                                <option value="1">Chorrillos</option>
-                                                                                <option value="1">Rimac</option>
+                                                                                <% for (UnidadMedida t : VehiculosDao.listarUnidad()) {%>
+                                                                                <option value="<%=t.getCodigo()%>"><%=t.getDescripcion()%></option>
+                                                                                <%}%>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -199,7 +199,7 @@
                                                             </div>
                                                             <div class="row clearfix">
                                                                 <div class="col-lg-4 col-md-4 col-sm-8 col-xs-7">
-                                                                    <button type="button" class="btn bg-blue waves-effect btn-sm col-md-6 col-sm-6 col-xs-6" onclick="javascript:fn_registrarDonaciones(true);">
+                                                                    <button type="button" class="btn bg-blue waves-effect btn-sm col-md-6 col-sm-6 col-xs-6" onclick="javascript:fn_procVehiculos();">
                                                                         <i class="material-icons">save </i>
                                                                         <span>CALCULAR</span>
                                                                     </button>
@@ -211,7 +211,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <table class="table table-striped">
+                                        <table class="table table-striped" id="getAllVehiculos">
                                             <thead>
                                                 <tr>
                                                     <th>Item</th>

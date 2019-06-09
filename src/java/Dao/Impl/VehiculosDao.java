@@ -2,6 +2,7 @@ package Dao.Impl;
 
 import Dao.DaoVehiculos;
 import Models.TipoVehiculo;
+import Models.UnidadMedida;
 import Models.Vehiculo;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -28,6 +29,7 @@ public class VehiculosDao implements DaoVehiculos {
     private TipoVehiculo tipovehiculo;
     private Vehiculo vehiculo;
     private String result;
+    private UnidadMedida unidad;
 
     public VehiculosDao(DbConnection conn) {
         this.conn = conn;
@@ -269,6 +271,26 @@ public class VehiculosDao implements DaoVehiculos {
                 lista.add(tvehiculo);
             }
             return lista;
+        } catch (SQLException e) {
+            System.out.println("Error ComboTVehiculos: " + e.getMessage());
+        }
+        return null;
+    }
+    
+    public static ArrayList<UnidadMedida> listarUnidad() {
+        try {
+            String consulta = "select * from UNIDAD_MEDIDA WHERE CUNIMEDIDAD_COD = CUNIMEDIDAD_COD and CESTADO='A' order by 1 desc";
+            Connection conn = new DbConnection().getConnection();
+            CallableStatement sentencia = (CallableStatement) conn.prepareCall(consulta);
+            ResultSet rs = sentencia.executeQuery();
+            ArrayList<UnidadMedida> list = new ArrayList<>();
+            while (rs.next()) {
+                UnidadMedida unidad = new UnidadMedida();
+                unidad.setCodigo(rs.getString("CUNIMEDIDAD_COD"));
+                unidad.setDescripcion(rs.getString("VDESCRIPCION"));
+                list.add(unidad);
+            }
+            return list;
         } catch (SQLException e) {
             System.out.println("Error ComboTVehiculos: " + e.getMessage());
         }

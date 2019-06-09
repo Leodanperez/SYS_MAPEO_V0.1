@@ -1,7 +1,7 @@
-
 package Dao.Impl;
 
 import Dao.DaoProceVehiculos;
+import Models.ListAllVehiculosProc;
 import Models.ProceVehiculos;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -16,8 +16,8 @@ import java.util.List;
  *
  * @author EDITH GALINDO
  */
-public class DaoProceVehiculosImpl implements DaoProceVehiculos{
-    
+public class DaoProceVehiculosImpl implements DaoProceVehiculos {
+
     final private DbConnection conn;
     private String sql;
     private Connection cn;
@@ -26,34 +26,43 @@ public class DaoProceVehiculosImpl implements DaoProceVehiculos{
     private ResultSet rs;
     private ProceVehiculos proceVehiculos;
     private String result;
+    private ListAllVehiculosProc listvehiculo;
 
     public DaoProceVehiculosImpl(DbConnection conn) {
         this.conn = conn;
     }
 
     @Override
-    public List<ProceVehiculos> listDonaciones() {
-        List<ProceVehiculos> listDonante = new LinkedList<>();
+    public List<ListAllVehiculosProc> listVehiculos() {
+        List<ListAllVehiculosProc> listDonan = new LinkedList<>();
         cn = conn.getConnection();
-        sql = "SELECT DN.CDONANTE_COD AS codigo, DN.VNOMBRE AS nombre, DN.CTELEFONO AS telefono, DN.VEMAIL AS email,\n"
-                + "TD.VDESCRIPCION AS descripcion, DN.CNRODOC AS NRO\n"
-                + "FROM DONANTE DN\n"
-                + "INNER JOIN TIPO_DOC TD ON TD.CTIPODOC_COD = DN.CTIPODOC_COD";
+        sql = "SELECT VH.DVOLUMEN,VH.VPLACA,VH.COMBUSTIBLE,TP.VDESCRIPCION AS VEHICULOS,DTC.SUBTOTAL_COMBUSTIBLE,UM.VDESCRIPCION AS UNIDAD,\n"
+                + "EMG.VDESCRIPCION AS EMERGENCIA\n"
+                + "FROM VEHICULO VH\n"
+                + "INNER JOIN TIP_VEHICULO TP ON VH.CTVEHICULO_COD = TP.CTVEHICULO_COD\n"
+                + "INNER JOIN DETALLE_CAL_COMBUSTIBLE DTC ON VH.CVEHICULO_COD=DTC.CVEHICULO_COD\n"
+                + "INNER JOIN PROC_CALC_COMBUSTIBLE PCC ON PCC.CALCCOMBUSTIBLE_COD = DTC.CALCCOMBUSTIBLE_COD\n"
+                + "INNER JOIN EMERGENCIAS EMG ON EMG.CEMERGENCIA_COD = PCC.CEMERGENCIA_COD\n"
+                + "INNER JOIN UNIDAD_MEDIDA UM ON UM.CUNIMEDIDAD_COD = PCC.CUNIDADES_CODUNIDAD";
 
         if (cn != null) {
             try {
                 pst = cn.prepareStatement(sql);
                 rs = pst.executeQuery();
                 while (rs.next()) {
-                    proceVehiculos = new ProceVehiculos();
-                    proceVehiculos.setCOD_TIPO_VEHICULO(rs.getString("codigo"));
-                    proceVehiculos.setCOD_TIPO_VEHICULO(rs.getString("nombre"));
-                    proceVehiculos.setCOD_UNIDAD(rs.getString("telefono"));
+                    listvehiculo = new ListAllVehiculosProc();
+                    listvehiculo.setVOLUMEN(rs.getString("DVOLUMEN"));
+                    listvehiculo.setPLACA(rs.getString("VPLACA"));
+                    listvehiculo.setCOMBUSTIBLE(rs.getString("COMBUSTIBLE"));
+                    listvehiculo.setVEHICULO(rs.getString("VEHICULOS"));
+                    listvehiculo.setSUB_TOTALCOMBUSTIBLE(rs.getString("SUBTOTAL_COMBUSTIBLE"));
+                    listvehiculo.setUNIDAD(rs.getString("UNIDAD"));
+                    listvehiculo.setEMERGENCIA(rs.getString("EMERGENCIA"));
 
-                    listDonante.add(proceVehiculos);
+                    listDonan.add(listvehiculo);
                 }
             } catch (SQLException e) {
-                System.out.println("Error al listarDonante: " + e.getMessage());
+                System.out.println("Error al listar procesos: " + e.getMessage());
                 return null;
             } finally {
                 try {
@@ -66,7 +75,7 @@ public class DaoProceVehiculosImpl implements DaoProceVehiculos{
                 }
             }
         }
-        return listDonante;
+        return listDonan;
     }
 
     @Override
@@ -91,5 +100,5 @@ public class DaoProceVehiculosImpl implements DaoProceVehiculos{
         }
         return result;
     }
-    
+
 }

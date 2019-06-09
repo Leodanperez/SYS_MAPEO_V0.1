@@ -1,6 +1,7 @@
 
 package Dao;
 
+import Models.ListAllVehiculosProc;
 import Models.ProceVehiculos;
 import java.util.List;
 
@@ -9,6 +10,6 @@ import java.util.List;
  * @author EDITH GALINDO
  */
 public interface DaoProceVehiculos {
-    public List<ProceVehiculos> listDonaciones();
+    public List<ListAllVehiculosProc> listVehiculos();
     public String procDonaciones(ProceVehiculos proceVehiculos);
 }
