@@ -89,16 +89,18 @@ public class procesoDonacionServlet extends HttpServlet {
             proceVehiculos.setCOD_UNIDAD(codunidad);
             
             result = daoProceVehiculos.procDonaciones(proceVehiculos);
+            
             List<ListAllVehiculosProc> listVehiculos = daoProceVehiculos.listVehiculos();
+            sb = listProcVehiculo(listVehiculos);
             conn.disconnect();
             
             response.setContentType("text/html;charset=ISO-8859-1");
             try (PrintWriter out = response.getWriter()) {
                 out.print(result);
             }
-            request.setAttribute("listProceDonaciones", listVehiculos);
+            /*request.setAttribute("listProceDonaciones", listVehiculos);
             rd = request.getRequestDispatcher("paginas/proceso/p_donaciones.jsp");
-            rd.forward(request, response);
+            rd.forward(request, response);*/
         }
     }
 
