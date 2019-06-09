@@ -100,7 +100,7 @@ function fn_procDonaciones() {
 
 var servlet = 'procesoDonacionServlet';
 var link = 'listProcDonaciones';
-function fn_procDonaciones() {
+function fn_procVehiculos() {
     var codVehiculo = $("#Ivehiculo").val();
     var codEmergencia = $("#Iemergencia").val();
     var codUnidad = $("#Iunidad").val();
